@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Room = require('../models/Room')
 const Asset = require('../models/Asset')
+
 router.get('/', async (req, res, next) => {
     try {
         const rooms = await Room.find()

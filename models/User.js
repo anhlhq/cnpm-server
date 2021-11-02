@@ -17,6 +17,12 @@ const userSchema = new Schema({
     role: {
         type: Number
     },
+    code: {
+        type: String
+    },
+    date_of_birth: {
+        type: String
+    },
     gender: {
         type: Number
     },
@@ -26,11 +32,10 @@ const userSchema = new Schema({
     phone: {
         type: String
     },
-    class: {
-        type: Schema.Types.ObjectId,
-        ref: 'Class'
+    classname: {
+        type: String
     },
-    faculty: {
+    faculty_id: {
         type: Schema.Types.ObjectId,
         ref: 'Faculty'
     },

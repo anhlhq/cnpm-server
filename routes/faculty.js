@@ -13,9 +13,10 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { name } = req.body
+        const { name, classes } = req.body
         const faculty = await new Faculty
         faculty.name = name
+        faculty.classes = classes
         await faculty.save()
         res.json(faculty)
     } catch (error) {
@@ -26,9 +27,10 @@ router.post('/', async (req, res, next) => {
 router.post('/update/:id', async (req, res, next) => {
     try {
         const { id } = req.params
-        const { name } = req.body
+        const { name, classes } = req.body
         const faculty = await Faculty.findById(id)
         faculty.name = name
+        faculty.classes = classes
         await faculty.save()
         res.json(faculty)
     } catch (err) {

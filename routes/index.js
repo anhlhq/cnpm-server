@@ -14,9 +14,8 @@ router.get('/', passport.authenticate('local', { failureRedirect: './auth/login'
 
 router.use('/auth', require('./auth'))
 router.use('/user', require('./user'))
-router.use('/student', require('./student'))
+
 router.use('/faculty', require('./faculty'))
-router.use('/class', require('./class'))
 
 router.use('/building', require('./building'))
 router.use('/floor', require('./floor'))
