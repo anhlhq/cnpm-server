@@ -13,7 +13,7 @@ const mongoose = require('mongoose')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT);
+var port = normalizePort(3000 || process.env.PORT);
 app.set('port', port);
 
 /**
@@ -28,7 +28,7 @@ var server = http.createServer(app);
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect("mongodb+srv://lhqa:qa123@db.odef9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
