@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Room = require('../models/Room')
+const escapeStringRegexp = require('escape-string-regexp');
 
 router.get('/', async (req, res, next) => {
-    const { id, tang, sogiuong, toanha, songuoitoida, giaphong, gioitinh } = req.query
+    const { keyword } = req.query
     try {
         if (id) {
             const room = await Room.find({
@@ -11,6 +12,7 @@ router.get('/', async (req, res, next) => {
             })
             res.json(room)
         }
+
         if (tang) {
             const room = await Room.find({
                 tang: tang
@@ -24,8 +26,9 @@ router.get('/', async (req, res, next) => {
             res.json(room)
         }
         if (toanha) {
+            const $regex = escapeStringRegexp(toanha);
             const room = await Room.find({
-                toanha: toanha
+                toanha: $regex
             })
             res.json(room)
         }
@@ -46,6 +49,10 @@ router.get('/', async (req, res, next) => {
                 gioitinh: gioitinh
             })
             res.json(room)
+        }
+
+        if (keyword) {
+
         }
         const rooms = await Room.find()
         res.json(rooms)
