@@ -3,13 +3,28 @@ const router = express.Router()
 const Room = require('../models/Room')
 
 router.get('/', async (req, res, next) => {
+    const { id, tang } = req.query
     try {
+        if (id) {
+            const room = await Room.findOne({
+                id: id
+            })
+            res.json(room)
+        }
+        if (tang) {
+            const room = await Room.findOne({
+                tang: tang
+            })
+            res.json(room)
+        }
         const rooms = await Room.find()
         res.json(rooms)
     } catch (error) {
         next(error)
     }
 })
+
+
 
 router.get('/:oid', async (req, res, next) => {
     try {
