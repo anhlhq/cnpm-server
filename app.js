@@ -39,7 +39,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000, // 24 hours
 }))
 
-app.use('/', routes);
+app.use('/api', routes);
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);

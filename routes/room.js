@@ -12,44 +12,45 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
-    try {
-        const { id } = req.params
-        const room = await Room.findById(id)
-        const asset = await Asset.findOne({
-            room_id: id
-        })
-        asset && room
-            ? res.json(
-                {
-                    name: room.name,
-                    building_id: room.building_id,
-                    floor_id: room.floor_id,
-                    price: room.price,
-                    limit: room.limit,
-                    gender: room.gender,
-                    asset_list: asset.list
-                }
-            )
-            : res.json({
-                room: room,
-                asset: null
-            })
-    } catch (error) {
-        next(error)
-    }
-})
+// router.get('/:id', async (req, res, next) => {
+//     try {
+//         const { id } = req.params
+//         const room = await Room.findById(id)
+//         const asset = await Asset.findOne({
+//             room_id: id
+//         })
+//         asset && room
+//             ? res.json(
+//                 {
+//                     name: room.name,
+//                     building_id: room.building_id,
+//                     floor_id: room.floor_id,
+//                     price: room.price,
+//                     limit: room.limit,
+//                     gender: room.gender,
+//                     asset_list: asset.list
+//                 }
+//             )
+//             : res.json({
+//                 room: room,
+//                 asset: null
+//             })
+//     } catch (error) {
+//         next(error)
+//     }
+// })
 
 router.post('/', async (req, res, next) => {
     try {
-        const { name, floor_id, building_id, price, limit, gender } = req.body
+        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh } = req.body
         const room = await new Room
-        room.name = name
-        room.building_id = building_id
-        room.floor_id = floor_id
-        room.price = price
-        room.limit = limit
-        room.gender = gender
+        room.id = id
+        room.toanha = toanha
+        room.tang = tang
+        room.sogiuong = sogiuong
+        room.songuoitoida = songuoitoida
+        room.giaphong = giaphong
+        room.gioitinh = gioitinh
         await room.save()
         res.json(room)
     } catch (err) {
@@ -57,29 +58,30 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.post('/update/:id', async (req, res, next) => {
+router.post('/update/:_id', async (req, res, next) => {
     try {
-        const { id } = req.params
-        const { name, building_id } = req.body
+        const { _id } = req.params
+        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh } = req.body
         const room = await Room.findById(id)
-        room.name = name
-        room.building_id = building_id
-        room.floor_id = floor_id
-        room.price = price
-        room.limit = limit
-        room.gender = gender
+        room.id = id
+        room.toanha = toanha
+        room.tang = tang
+        room.sogiuong = sogiuong
+        room.songuoitoida = songuoitoida
+        room.giaphong = giaphong
+        room.gioitinh = gioitinh
         await room.save()
-        res.json(floor)
+        res.json(room)
     } catch (err) {
         next(err)
     }
 })
 
-router.delete('/delete/:id', async (req, res, next) => {
+router.delete('/delete/:_id', async (req, res, next) => {
     try {
-        const { id } = req.params
+        const { _id } = req.params
         const room = await Room.remove({
-            _id: id
+            _id: _id
         })
         res.json(room)
     } catch (err) {

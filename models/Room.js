@@ -1,27 +1,34 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const schema = new Schema({
-    name: {
+    id: {
         type: String,
         require: true,
         unique: true
     },
-    floor_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Floor'
+    toanha: {
+        type: String,
+        require: true
     },
-    building_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Building'
+    tang: {
+        type: Number,
+        require: true
     },
-    price: {
-        type: Number
+    sogiuong: {
+        type: Number,
+        require: true
     },
-    limit: {
-        type: String
+    songuoitoida: {
+        type: Number,
+        require: true
     },
-    gender: {
-        type: Number
+    giaphong: {
+        type: Number,
+        require: true
+    },
+    gioitinh: {
+        type: String,
+        require: true
     }
 })
 const Room = mongoose.model('Room', schema)
