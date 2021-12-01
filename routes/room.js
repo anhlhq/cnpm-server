@@ -55,8 +55,8 @@ router.get('/', async (req, res, next) => {
             }
 
         }
-        // const rooms = await Room.find()
-        // res.json(rooms)
+        const rooms = await Room.find()
+        res.json(rooms)
     } catch (error) {
         next(error)
     }
