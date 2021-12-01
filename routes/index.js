@@ -2,9 +2,16 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
-router.get('/', () => {
+router.get('/', (req, res) => {
     try {
-        res.json('api')
+        res.json({
+            "Phòng": "/room",
+            "Sinh viên": "/student",
+            "Biên bản": "/record",
+            "Tài sản": "/taisan",
+            "Hóa đơn": "/bill",
+            "Hợp đồng": "/contract",
+        })
     } catch {
 
     }
