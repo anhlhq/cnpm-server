@@ -36,18 +36,11 @@ router.get('/', async (req, res, next) => {
                             tang: keyword
                         },
                         {
-                            sogiuong: keyword
-                        },
-                        {
-                            songuoitoida: keyword
-                        },
-                        {
                             giaphong: keyword
                         },
                         {
                             gioitinh: keyword
                         }
-
                     ]
                 })
                 res.json(rooms)
