@@ -94,7 +94,7 @@ router.post('/update/:oid', async (req, res, next) => {
             diachi,
             sodienthoai
         } = req.body
-        const student = await User.findById(id)
+        const student = await User.findById(oid)
         student.id = id
         student.hoten = hoten
         student.ngaysinh = ngaysinh
