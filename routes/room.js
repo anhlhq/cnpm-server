@@ -3,17 +3,47 @@ const router = express.Router()
 const Room = require('../models/Room')
 
 router.get('/', async (req, res, next) => {
-    const { id, tang } = req.query
+    const { id, tang, sogiuong, toanha, songuoitoida, giaphong, gioitinh } = req.query
     try {
         if (id) {
-            const room = await Room.findOne({
+            const room = await Room.find({
                 id: id
             })
             res.json(room)
         }
         if (tang) {
-            const room = await Room.findOne({
+            const room = await Room.find({
                 tang: tang
+            })
+            res.json(room)
+        }
+        if (sogiuong) {
+            const room = await Room.find({
+                sogiuong: sogiuong
+            })
+            res.json(room)
+        }
+        if (toanha) {
+            const room = await Room.find({
+                toanha: toanha
+            })
+            res.json(room)
+        }
+        if (songuoitoida) {
+            const room = await Room.find({
+                songuoitoida: songuoitoida
+            })
+            res.json(room)
+        }
+        if (giaphong) {
+            const room = await Room.find({
+                giaphong: giaphong
+            })
+            res.json(room)
+        }
+        if (gioitinh) {
+            const room = await Room.find({
+                gioitinh: gioitinh
             })
             res.json(room)
         }
