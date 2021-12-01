@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
-const Faculty = require('../models/Faculty')
 const passport = require('passport')
 
 router.get('/', async (req, res, next) => {
