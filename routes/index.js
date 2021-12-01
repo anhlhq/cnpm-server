@@ -2,13 +2,11 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
-router.get('/', passport.authenticate('local', { failureRedirect: './auth/login' }), async (req, res, next) => {
+router.get('/', () => {
     try {
-        res.render('index', {
-            title: 'CNPM'
-        })
-    } catch (error) {
-        next(error)
+        res.json('api')
+    } catch {
+
     }
 })
 

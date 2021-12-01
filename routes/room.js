@@ -12,33 +12,15 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-// router.get('/:id', async (req, res, next) => {
-//     try {
-//         const { id } = req.params
-//         const room = await Room.findById(id)
-//         const asset = await Asset.findOne({
-//             room_id: id
-//         })
-//         asset && room
-//             ? res.json(
-//                 {
-//                     name: room.name,
-//                     building_id: room.building_id,
-//                     floor_id: room.floor_id,
-//                     price: room.price,
-//                     limit: room.limit,
-//                     gender: room.gender,
-//                     asset_list: asset.list
-//                 }
-//             )
-//             : res.json({
-//                 room: room,
-//                 asset: null
-//             })
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+router.get('/:oid', async (req, res, next) => {
+    try {
+        const { oid } = req.params
+        const room = await Room.findById(oid)
+        res.json(room)
+    } catch (error) {
+        next(error)
+    }
+})
 
 router.post('/', async (req, res, next) => {
     try {
@@ -58,11 +40,11 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.post('/update/:_id', async (req, res, next) => {
+router.post('/update/:oid', async (req, res, next) => {
     try {
-        const { _id } = req.params
+        const { oid } = req.params
         const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh } = req.body
-        const room = await Room.findById(id)
+        const room = await Room.findById(oid)
         room.id = id
         room.toanha = toanha
         room.tang = tang
@@ -77,11 +59,11 @@ router.post('/update/:_id', async (req, res, next) => {
     }
 })
 
-router.delete('/delete/:_id', async (req, res, next) => {
+router.delete('/delete/:oid', async (req, res, next) => {
     try {
-        const { _id } = req.params
+        const { oid } = req.params
         const room = await Room.remove({
-            _id: _id
+            _id: oid
         })
         res.json(room)
     } catch (err) {
