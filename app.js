@@ -10,7 +10,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 const routes = require('./routes')
-
+const cors = require('cors')
 require('dotenv').config()
 var app = express();
 
@@ -28,6 +28,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors())
 
 app.use(cookieSession({
   name: 'session',

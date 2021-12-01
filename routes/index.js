@@ -12,11 +12,6 @@ router.get('/', () => {
 
 router.use('/auth', require('./auth'))
 router.use('/user', require('./user'))
-
-router.use('/faculty', require('./faculty'))
-
-router.use('/building', require('./building'))
-router.use('/floor', require('./floor'))
 router.use('/room', require('./room'))
-router.use('/asset', require('./asset'))
+
 module.exports = router
