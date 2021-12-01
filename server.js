@@ -28,7 +28,7 @@ var server = http.createServer(app);
 
 const startServer = async () => {
   try {
-    await mongoose.connect("mongodb+srv://lhqa:qa123@db.odef9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    await mongoose.connect("mongodb://mongo:oO9pejYjdDPBw18AGdHo@containers-us-west-14.railway.app:6102", {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
