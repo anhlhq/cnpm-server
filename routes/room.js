@@ -1,61 +1,62 @@
 const express = require('express')
 const router = express.Router()
 const Room = require('../models/Room')
-const escapeStringRegexp = require('escape-string-regexp');
 
 router.get('/', async (req, res, next) => {
     const { keyword } = req.query
     try {
-        if (id) {
-            const room = await Room.find({
-                id: id
-            })
-            res.json(room)
-        }
-
-        if (tang) {
-            const room = await Room.find({
-                tang: tang
-            })
-            res.json(room)
-        }
-        if (sogiuong) {
-            const room = await Room.find({
-                sogiuong: sogiuong
-            })
-            res.json(room)
-        }
-        if (toanha) {
-            const $regex = escapeStringRegexp(toanha);
-            const room = await Room.find({
-                toanha: $regex
-            })
-            res.json(room)
-        }
-        if (songuoitoida) {
-            const room = await Room.find({
-                songuoitoida: songuoitoida
-            })
-            res.json(room)
-        }
-        if (giaphong) {
-            const room = await Room.find({
-                giaphong: giaphong
-            })
-            res.json(room)
-        }
-        if (gioitinh) {
-            const room = await Room.find({
-                gioitinh: gioitinh
-            })
-            res.json(room)
-        }
-
         if (keyword) {
+            if (isNaN(parseInt(keyword))) {
+                const rooms = await Room.find({
+                    $or: [
+                        {
+                            id: keyword
+                        },
+                        {
+                            toanha: keyword
+                        },
+                        {
+                            gioitinh: keyword
+                        }
+
+                    ]
+                })
+                res.json(rooms)
+            }
+            else {
+                const rooms = await Room.find({
+                    $or: [
+                        {
+                            id: keyword
+                        },
+                        {
+                            toanha: keyword
+                        },
+                        {
+                            tang: keyword
+                        },
+                        {
+                            sogiuong: keyword
+                        },
+                        {
+                            songuoitoida: keyword
+                        },
+                        {
+                            giaphong: keyword
+                        },
+                        {
+                            gioitinh: keyword
+                        }
+
+                    ]
+                })
+                res.json(rooms)
+                console.log('a')
+            }
 
         }
-        const rooms = await Room.find()
-        res.json(rooms)
+        // const rooms = await Room.find()
+        // res.json(rooms)
     } catch (error) {
         next(error)
     }
