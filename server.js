@@ -13,7 +13,7 @@ const mongoose = require('mongoose')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(3000 || process.env.PORT);
+var port = normalizePort(3001 || process.env.PORT);
 app.set('port', port);
 
 /**
