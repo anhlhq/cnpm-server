@@ -11,6 +11,16 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.get('/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const bill = await Bill.findById(id)
+        res.json(bill)
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/', async (req, res, next) => {
     try {
         const {

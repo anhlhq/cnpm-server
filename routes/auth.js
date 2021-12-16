@@ -23,6 +23,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+
 router.post('/register', async (req, res, next) => {
     try {
         const { username, password } = req.body
