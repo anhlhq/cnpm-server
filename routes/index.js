@@ -25,5 +25,6 @@ router.use('/record', require('./record'))
 router.use('/asset', require('./asset'))
 router.use('/bill', require('./bill'))
 router.use('/contract', require('./contract'))
+router.use('/common', require('./common'))
 
 module.exports = router
