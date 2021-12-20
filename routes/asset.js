@@ -4,9 +4,11 @@ const Asset = require('../models/Asset')
 
 router.get('/', async (req, res, next) => {
     const query = req.query
+    const key = Object.keys(query)
+    const value = Object.values(query)
     try {
         const assets = await Asset.find({
-            query
+            [key]: value
         })
         res.json(assets)
     } catch (err) {

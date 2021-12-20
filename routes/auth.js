@@ -6,17 +6,13 @@ const jwt = require('jsonwebtoken')
 const { checkToken } = require('../middleware/auth')
 
 router.get('/', async (req, res, next) => {
-    const { username } = req.query
+    const query = req.query
+    const key = Object.keys(query)
+    const value = Object.values(query)
     try {
-        if (username) {
-            const user = await User.findOne({
-                username: username
-            })
-            user && res.json({
-                status: 'exist'
-            })
-        }
-        const users = await User.find()
+        const user = await User.find({
+            [key]: value
+        })
         res.json(users)
     } catch (err) {
         next(err)
