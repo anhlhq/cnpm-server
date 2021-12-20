@@ -32,7 +32,7 @@ router.post('/register', async (req, res, next) => {
         if (password) {
             await user.hashPassword(password)
         }
-        const token = user.generateAuthToken()
+        // const token = user.generateAuthToken()
         res.json({
             status: 'success',
             user
@@ -54,27 +54,27 @@ router.post('/login', async (req, res, next) => {
         if (!user) {
             res.json({
                 status: 'failed',
-                token: ''
+                // token: ''
             })
         }
         const match = await bcrypt.compare(password, user.password)
         if (!match) {
             res.json({
                 status: 'failed',
-                token: ''
+                // token: ''
             })
         }
         const token = await user.generateAuthToken()
         res.json({
             status: 'success',
-            token: token
+            user
         })
     } catch (error) {
 
     }
 });
 
-router.get('/status', checkToken, async (req, res, next) => {
+router.get('/status', async (req, res, next) => {
     try {
         const user = await User.findById(req.data._id)
         if (!user) {
@@ -86,16 +86,16 @@ router.get('/status', checkToken, async (req, res, next) => {
     }
 })
 
-router.get('/logout', checkToken, async (req, res, next) => {
-    try {
-        const user = await User.findById(req.data._id)
-        user.tokens = []
-        await user.save()
-        res.json('logged-out')
-        console.log(user)
-    } catch (error) {
-        next(error)
-    }
-})
+// router.get('/logout', checkToken, async (req, res, next) => {
+//     try {
+//         const user = await User.findById(req.data._id)
+//         user.tokens = []
+//         await user.save()
+//         res.json('logged-out')
+//         console.log(user)
+//     } catch (error) {
+//         next(error)
+//     }
+// })
 
 module.exports = router

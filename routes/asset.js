@@ -3,8 +3,11 @@ const router = express.Router()
 const Asset = require('../models/Asset')
 
 router.get('/', async (req, res, next) => {
+    const query = req.query
     try {
-        const assets = await Asset.find()
+        const assets = await Asset.find({
+            query
+        })
         res.json(assets)
     } catch (err) {
         next(err)

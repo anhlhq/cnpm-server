@@ -16,15 +16,15 @@ const schema = new Schema({
     },
     ngaybatdau: {
         type: Date,
-        require: true
+        // require: true
     },
     ngayketthuc: {
         type: Date,
-        require: true
+        // require: true
     },
     tinhtranghopdong: {
         type: Number,
-        require: true
+        // require: true
     }
 })
 const Contract = mongoose.model('Contract', schema)

@@ -15,7 +15,8 @@ const userSchema = new Schema({
         require: true
     },
     role: {
-        type: Number
+        type: String,
+        default: 'student'
     },
     code: {
         type: String

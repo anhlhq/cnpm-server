@@ -3,8 +3,13 @@ const router = express.Router()
 const Contract = require('../models/Contract')
 
 router.get('/', async (req, res, next) => {
+    const query = req.query
+    const key = Object.keys(query)
+    const value = Object.values(query)
     try {
-        const contracts = await Contract.find()
+        const contracts = await Contract.find({
+            [key]: value
+        })
         res.json(contracts)
     } catch (err) {
         next(err)

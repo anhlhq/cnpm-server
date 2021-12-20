@@ -3,8 +3,14 @@ const router = express.Router()
 const Record = require('../models/Record')
 
 router.get('/', async (req, res, next) => {
+    const query = req.query
+    const key = Object.keys(query)
+    const value = Object.values(query)
+
     try {
-        const records = await Record.find()
+        const records = await Record.find({
+            [key]: value
+        })
         res.json(records)
     } catch (err) {
         next(err)
