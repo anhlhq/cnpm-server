@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Student = require('../models/User')
+const Student = require('../models/Student')
 
 router.get('/', async (req, res, next) => {
     const { keyword } = req.query
@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
                 res.json(students)
             }
             else {
-                const students = await Students.find({
+                const students = await Student.find({
                     $or: [
                         {
                             hoten: keyword
@@ -94,7 +94,7 @@ router.post('/update/:oid', async (req, res, next) => {
             diachi,
             sodienthoai
         } = req.body
-        const student = await User.findById(oid)
+        const student = await Student.findById(oid)
         student.id = id
         student.hoten = hoten
         student.ngaysinh = ngaysinh

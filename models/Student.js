@@ -11,7 +11,7 @@ const schema = new Schema({
         require: true
     },
     ngaysinh: {
-        type: Date,
+        type: String,
     },
     lop: {
         type: String,
