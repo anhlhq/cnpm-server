@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
     const key = Object.keys(query)
     const value = Object.values(query)
     try {
-        const user = await User.find({
+        const users = await User.find({
             [key]: value
         })
         res.json(users)
