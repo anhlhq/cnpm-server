@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const { checkToken } = require('../middleware/auth')
 
 router.get('/', async (req, res, next) => {
     const query = req.query
@@ -39,8 +37,6 @@ router.post('/register', async (req, res, next) => {
     }
 })
 
-
-
 router.post('/login', async (req, res, next) => {
     const { username, password } = req.body
     try {
@@ -60,13 +56,13 @@ router.post('/login', async (req, res, next) => {
                 // token: ''
             })
         }
-        const token = await user.generateAuthToken()
+        // const token = await user.generateAuthToken()
         res.json({
             status: 'success',
             user
         })
     } catch (error) {
-
+        next(error)
     }
 });
 
