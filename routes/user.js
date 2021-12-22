@@ -22,6 +22,19 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+router.get('/id_student/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const user = await User.find({
+            id_student: id
+        })
+        res.json(user)
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 router.post('/', async (req, res, next) => {
     try {
         const { username, password, role, id_student } = req.body
