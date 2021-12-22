@@ -78,7 +78,7 @@ router.post('/update/:id', async (req, res, next) => {
 })
 
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/delete/:id', async (req, res, next) => {
     try {
         const { id } = req.params
         const user = await User.remove({

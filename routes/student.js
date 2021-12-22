@@ -111,7 +111,7 @@ router.post('/update/:oid', async (req, res, next) => {
 })
 
 
-router.delete('/:oid', async (req, res, next) => {
+router.delete('/delete/:oid', async (req, res, next) => {
     try {
         const { oid } = req.params
         const student = await Student.remove({
