@@ -15,11 +15,11 @@ const schema = new Schema({
         require: true
     },
     ngaybatdau: {
-        type: Date,
+        type: String,
         // require: true
     },
     ngayketthuc: {
-        type: Date,
+        type: String,
         // require: true
     },
     tinhtranghopdong: {

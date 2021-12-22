@@ -20,7 +20,7 @@ const schema = new Schema({
         type: String
     },
     thoigiankiluat: {
-        type: Date
+        type: String
     }
 })
 const Record = mongoose.model('Record', schema)
