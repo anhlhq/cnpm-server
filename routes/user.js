@@ -16,17 +16,7 @@ router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params
         const user = await User.findById(id)
-        const faculty = await Faculty.findById(user.faculty_id)
-        res.json({
-            username: user.username,
-            fullname: user.fullname,
-            date_of_birth: user.date_of_birth,
-            gender: user.gender,
-            email: user.email,
-            phone: user.phone,
-            class: user.class,
-            faculty: faculty.name
-        })
+        res.json(user)
     } catch (error) {
         next(error)
     }
@@ -34,19 +24,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { username, password, role, code, fullname, date_of_birth, gender, email, phone, classname, faculty } = req.body
+        const { username, password, role, id_student } = req.body
         const user = await new User
         user.username = username
         user.password = password
         user.role = role
-        user.code = code
-        user.fullname = fullname
-        user.date_of_birth = date_of_birth
-        user.gender = user.gender
-        user.email = email
-        user.phone = phone
-        user.classname = classname
-        user.faculty = faculty
+        user.id_student = id_student
         await user.save()
         res.json(user)
     } catch (err) {
@@ -57,19 +40,12 @@ router.post('/', async (req, res, next) => {
 router.post('/update/:id', async (req, res, next) => {
     try {
         const { id } = req.params
-        const { username, password, role, code, fullname, date_of_birth, gender, email, phone, classname, faculty } = req.body
+        const { username, password, role, id_student } = req.body
         const user = await User.findById(id)
         user.username = username
         user.password = password
         user.role = role
-        user.code = code
-        user.fullname = fullname
-        user.date_of_birth = date_of_birth
-        user.gender = gender
-        user.email = email
-        user.phone = phone
-        user.classname = classname
-        user.faculty = faculty
+        user.id_student = id_student
         await user.save()
         res.json(user)
     } catch (err) {

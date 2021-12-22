@@ -18,31 +18,8 @@ const userSchema = new Schema({
         type: String,
         default: 'student'
     },
-    code: {
+    id_student: {
         type: String
-    },
-    date_of_birth: {
-        type: String
-    },
-    gender: {
-        type: Number
-    },
-    email: {
-        type: String
-    },
-    phone: {
-        type: String
-    },
-    classname: {
-        type: String
-    },
-    faculty_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Faculty'
-    },
-    contract_code: {
-        type: Schema.Types.ObjectId,
-        ref: 'Contract'
     },
     tokens: [
         { type: String }
