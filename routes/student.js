@@ -53,6 +53,15 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.get('/:oid', async (req, res, next) => {
+    try {
+        const { oid } = req.params
+        const student = Student.findById(oid)
+        res.json(student)
+    } catch (error) {
+        next(error)
+    }
+})
 router.post('/', async (req, res, next) => {
     try {
         const {
