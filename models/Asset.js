@@ -5,7 +5,6 @@ const schema = new Schema({
     maphong: String,
     tentaisan: String,
     tinhtrang: String,
-    soluong: String,
     donvitinh: String
 })
 const Asset = mongoose.model('Asset', schema)

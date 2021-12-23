@@ -34,7 +34,6 @@ router.post('/', async (req, res, next) => {
             maphong,
             tentaisan,
             tinhtrang,
-            soluong,
             donvitinh
         } = req.body
         const asset = await new Asset
@@ -42,7 +41,6 @@ router.post('/', async (req, res, next) => {
         asset.maphong = maphong
         asset.tentaisan = tentaisan
         asset.tinhtrang = tinhtrang
-        asset.soluong = soluong
         asset.donvitinh = donvitinh
         await asset.save()
         res.json(asset)
@@ -59,7 +57,6 @@ router.post('/update/:oid', async (req, res, next) => {
             maphong,
             tentaisan,
             tinhtrang,
-            soluong,
             donvitinh
         } = req.body
         const asset = await Asset.findById(oid)
@@ -67,7 +64,6 @@ router.post('/update/:oid', async (req, res, next) => {
         asset.maphong = maphong
         asset.tentaisan = tentaisan
         asset.tinhtrang = tinhtrang
-        asset.soluong = soluong
         asset.donvitinh = donvitinh
         await asset.save()
         res.json(asset)
