@@ -3,8 +3,6 @@ const Schema = mongoose.Schema
 const schema = new Schema({
     id: {
         type: String,
-        require: true,
-        unique: true
     },
     sinhvienid: {
         type: Number,

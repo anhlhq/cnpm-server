@@ -30,14 +30,20 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const {
-            id,
-            phongid,
-            danhsachtaisan
+            mataisai,
+            maphong,
+            tentaisan,
+            tinhtrang,
+            soluong,
+            donvitinh
         } = req.body
         const asset = await new Asset
-        asset.id = id
-        asset.phongid = phongid
-        asset.danhsachtaisan = danhsachtaisan
+        asset.mataisai = mataisai
+        asset.maphong = maphong
+        asset.tentaisan = tentaisan
+        asset.tinhtrang = tinhtrang
+        asset.soluong = soluong
+        asset.donvitinh = donvitinh
         await asset.save()
         res.json(asset)
     } catch (err) {
@@ -49,14 +55,20 @@ router.post('/update/:oid', async (req, res, next) => {
     try {
         const { oid } = req.params
         const {
-            id,
-            phongid,
-            danhsachtaisan
+            mataisai,
+            maphong,
+            tentaisan,
+            tinhtrang,
+            soluong,
+            donvitinh
         } = req.body
-        const asset = await new Asset.findById(oid)
-        asset.id = id
-        asset.phongid = phongid
-        asset.danhsachtaisan = danhsachtaisan
+        const asset = await Asset.findById(oid)
+        asset.mataisai = mataisai
+        asset.maphong = maphong
+        asset.tentaisan = tentaisan
+        asset.tinhtrang = tinhtrang
+        asset.soluong = soluong
+        asset.donvitinh = donvitinh
         await asset.save()
         res.json(asset)
     } catch (err) {

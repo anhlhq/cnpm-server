@@ -73,7 +73,7 @@ router.post('/update/:oid', async (req, res, next) => {
             chisonuoccuoi,
             tinhtranghoadon
         } = req.body
-        const bill = await new Bill.findById(oid)
+        const bill = await Bill.findById(oid)
         bill.id = id
         bill.sinhvienid = sinhvienid
         bill.phongid = phongid

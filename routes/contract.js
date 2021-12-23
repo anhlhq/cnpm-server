@@ -61,7 +61,7 @@ router.post('/update/:oid', async (req, res, next) => {
             ngayketthuc,
             tinhtranghopdong,
         } = req.body
-        const contract = await new Contract.findById(oid)
+        const contract = await Contract.findById(oid)
         contract.id = id
         contract.sinhvienid = sinhvienid
         contract.phongid = phongid

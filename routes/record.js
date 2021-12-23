@@ -37,7 +37,7 @@ router.post('/', async (req, res, next) => {
             hinhthuckiluat,
             thoigiankiluat,
         } = req.body
-        const record = await new Record
+        const record = await Record
         record.id = id
         record.sinhvienid = sinhvienid
         record.noidungvipham = noidungvipham
@@ -62,7 +62,7 @@ router.post('/update/:oid', async (req, res, next) => {
             hinhthuckiluat,
             thoigiankiluat,
         } = req.body
-        const record = await new Record.findById(oid)
+        const record = await Record.findById(oid)
         record.id = id
         record.sinhvienid = sinhvienid
         record.noidungvipham = noidungvipham
