@@ -40,7 +40,9 @@ router.post('/', async (req, res, next) => {
         const { username, password, role, id_student } = req.body
         const user = await new User
         user.username = username
-        user.password = password
+        if (password) {
+            await user.hashPassword(password)
+        }
         user.role = role
         user.id_student = id_student
         await user.save()
@@ -56,7 +58,9 @@ router.post('/update/:id', async (req, res, next) => {
         const { username, password, role, id_student } = req.body
         const user = await User.findById(id)
         user.username = username
-        user.password = password
+        if (password) {
+            await user.hashPassword(password)
+        }
         user.role = role
         user.id_student = id_student
         await user.save()
