@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
         contract.sinhvienid = sinhvienid
         contract.phongid = phongid
         contract.ngaybatdau = ngaybatdau
-        contract.ngayketthuct = ngayketthuc
+        contract.ngayketthuc = ngayketthuc
         contract.tinhtranghopdong = tinhtranghopdong
         await contract.save()
         res.json(contract)
@@ -66,7 +66,7 @@ router.post('/update/:oid', async (req, res, next) => {
         contract.sinhvienid = sinhvienid
         contract.phongid = phongid
         contract.ngaybatdau = ngaybatdau
-        contract.ngayketthuct = ngayketthuc
+        contract.ngayketthuc = ngayketthuc
         contract.tinhtranghopdong = tinhtranghopdong
         await contract.save()
         res.json(contract)
