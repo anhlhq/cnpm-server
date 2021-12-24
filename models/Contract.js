@@ -15,10 +15,9 @@ const schema = new Schema({
     },
     ngayketthuc: {
         type: String,
-
     },
     tinhtranghopdong: {
-        type: Number,
+        type: String,
     }
 })
 const Contract = mongoose.model('Contract', schema)
