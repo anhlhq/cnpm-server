@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
         next(err)
     }
 })
-
+// /api/contract?sinhvienid=
 router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params
