@@ -23,5 +23,31 @@ router.get('/phong_con_trong', async (req, res, next) => {
         next(error)
     }
 })
+router.get('/dashboard', async (req, res, next) => {
+    try {
+        const room = await Room.find()
+        const contract = await Contract.find()
+
+        if (!room) {
+            res.json('Chưa có phòng nào')
+        }
+        let phongcontrong = [];
+        room.map((item) => {
+            const contractCount = contract.filter((con => con.phongid === item.id))
+            if (contractCount.length < item.songuoitoida) {
+                phongcontrong.push(item);
+            }
+        })
+
+        res.json({
+            total: room.length,
+            controng: phongcontrong.length,
+            empty: room.length - phongcontrong.length
+        })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 module.exports = router
