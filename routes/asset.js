@@ -3,7 +3,7 @@ const router = express.Router()
 const Asset = require('../models/Asset')
 
 router.get('/', async (req, res, next) => {
-    const { keyword } = req.query
+    const { keyword, maphong } = req.query
     try {
         if (keyword) {
             if (isNaN(parseInt(keyword))) {
@@ -29,6 +29,12 @@ router.get('/', async (req, res, next) => {
                 res.json(assets)
             }
 
+        }
+        if (maphong) {
+            const asset = await Asset.find({
+                maphong: maphong
+            })
+            res.json(asset)
         }
         const assets = await Asset.find()
         res.json(assets)
