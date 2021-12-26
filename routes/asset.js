@@ -3,13 +3,34 @@ const router = express.Router()
 const Asset = require('../models/Asset')
 
 router.get('/', async (req, res, next) => {
-    const query = req.query
-    const key = Object.keys(query)
-    const value = Object.values(query)
+    const { keyword } = req.query
     try {
-        const assets = await Asset.find({
-            [key]: value
-        })
+        if (keyword) {
+            if (isNaN(parseInt(keyword))) {
+                const assets = await Asset.find({
+                    $or: [
+                        {
+                            tentaisan: keyword
+                        }, {
+                            tinhtrang: keyword
+                        }
+                    ]
+                })
+                res.json(assets)
+            }
+            else {
+                const assets = await Asset.find({
+                    $or: [
+                        {
+                            maphong: keyword
+                        },
+                    ]
+                })
+                res.json(assets)
+            }
+
+        }
+        const assets = await Asset.find()
         res.json(assets)
     } catch (err) {
         next(err)
