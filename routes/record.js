@@ -3,20 +3,40 @@ const router = express.Router()
 const Record = require('../models/Record')
 
 router.get('/', async (req, res, next) => {
-    const query = req.query
-    const key = Object.keys(query)
-    const value = Object.values(query)
-
+    const { keyword } = req.query
     try {
-        const records = await Record.find({
-            [key]: value
-        })
+        if (keyword) {
+            if (isNaN(parseInt(keyword))) {
+                const records = await Record.find({
+                    $or: [
+                        {
+                            noidungvipham: keyword
+                        }, {
+                            hinhthuckiluat: keyword
+                        }
+                    ]
+                })
+                res.json(records)
+            }
+            else {
+                const records = await Record.find({
+                    $or: [
+                        {
+                            sinhvien: keyword
+                        },
+                    ]
+                })
+                res.json(records)
+            }
+
+        }
+        const records = await Record.find()
         res.json(records)
     } catch (err) {
         next(err)
     }
 })
-
+// 
 router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params
@@ -37,7 +57,7 @@ router.post('/', async (req, res, next) => {
             hinhthuckiluat,
             thoigiankiluat,
         } = req.body
-        const record = await Record
+        const record = await new Record
         record.id = id
         record.sinhvienid = sinhvienid
         record.noidungvipham = noidungvipham
@@ -47,7 +67,7 @@ router.post('/', async (req, res, next) => {
         await record.save()
         res.json(record)
     } catch (err) {
-        next(err)
+        console.log(err)
     }
 })
 

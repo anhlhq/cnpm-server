@@ -13,9 +13,8 @@ router.get('/phong_con_trong', async (req, res, next) => {
         }
         let phongcontrong = [];
         room.map((item) => {
-            const contractCount = contract.filter((con => con.phong_id === item._id))
-            console.log(contractCount)
-            if (contractCount.length < 6) {
+            const contractCount = contract.filter((con => con.phongid === item.id))
+            if (contractCount.length < item.songuoitoida) {
                 phongcontrong.push(item);
             }
         })

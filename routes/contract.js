@@ -3,19 +3,51 @@ const router = express.Router()
 const Contract = require('../models/Contract')
 
 router.get('/', async (req, res, next) => {
-    const query = req.query
-    const key = Object.keys(query)
-    const value = Object.values(query)
+    const { keyword } = req.query
     try {
-        const contracts = await Contract.find({
-            [key]: value
-        })
+        if (keyword) {
+            if (isNaN(parseInt(keyword))) {
+                const contracts = await Contract.find({
+                    $or: [
+                        {
+                            tinhtranghopdong: keyword
+                        }
+                    ]
+                })
+                console.log('1', keyword)
+                res.json(contracts)
+            }
+            else {
+                const contracts = await Contract.find({
+                    $or: [
+                        {
+                            id: keyword
+                        },
+                        {
+                            sinhvienid: keyword
+                        },
+                        {
+                            phongid: keyword
+                        },
+                        {
+                            ngaybatdau: keyword
+                        },
+                        {
+                            ngaykethuc: keyword
+                        }
+                    ]
+                })
+                console.log(keyword)
+                res.json(contracts)
+            }
+        }
+        const contracts = await Contract.find()
         res.json(contracts)
     } catch (err) {
         next(err)
     }
 })
-// /api/contract?sinhvienid=
+
 router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params
