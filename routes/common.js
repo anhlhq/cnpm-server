@@ -41,8 +41,8 @@ router.get('/dashboard', async (req, res, next) => {
 
         res.json({
             total: room.length,
-            controng: phongcontrong.length,
-            empty: room.length - phongcontrong.length
+            empty: phongcontrong.length,
+            full: room.length - phongcontrong.length
         })
     } catch (error) {
         console.log(error)
