@@ -20,15 +20,6 @@ router.get('/', async (req, res, next) => {
                 const bills = await Bill.find({
                     $or: [
                         {
-                            id: keyword
-                        },
-                        {
-                            sinhvienid: keyword
-                        },
-                        {
-                            phongid: keyword
-                        },
-                        {
                             thang: keyword
                         },
                         {
