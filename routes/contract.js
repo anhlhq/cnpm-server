@@ -3,7 +3,7 @@ const router = express.Router()
 const Contract = require('../models/Contract')
 
 router.get('/', async (req, res, next) => {
-    const { keyword } = req.query
+    const { keyword, sinhvienid } = req.query
     try {
         if (keyword) {
             if (isNaN(parseInt(keyword))) {
@@ -40,6 +40,13 @@ router.get('/', async (req, res, next) => {
                 console.log(keyword)
                 res.json(contracts)
             }
+        }
+
+        if (sinhvienid) {
+            const contract = await Contract.find({
+                sinhvienid: sinhvienid
+            })
+            res.json(contract)
         }
         const contracts = await Contract.find()
         res.json(contracts)
