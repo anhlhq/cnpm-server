@@ -21,19 +21,7 @@ router.get('/', async (req, res, next) => {
                 const contracts = await Contract.find({
                     $or: [
                         {
-                            id: keyword
-                        },
-                        {
-                            sinhvienid: keyword
-                        },
-                        {
                             phongid: keyword
-                        },
-                        {
-                            ngaybatdau: keyword
-                        },
-                        {
-                            ngaykethuc: keyword
                         }
                     ]
                 })
