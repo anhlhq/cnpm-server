@@ -31,9 +31,20 @@ router.get('/', async (req, res, next) => {
 
         }
         const records = await Record.find()
-        // const sinhvien = await Student.findOne({})
-        // const data = records.map()
-        res.json(records)
+        const sinhvien = await Student.find()
+
+        const data = records.map(item => {
+            return {
+                id: item.id,
+                sinhvienid: item.sinhvienid,
+                hoten: sinhvien.filter(item2 => item2.id === item.sinhvienid.toString())[0].hoten,
+                noidungvipham: item.noidungvipham,
+                thoigianvipham: item.thoigianvipham,
+                hinhthuckiluat: item.hinhthuckiluat,
+                thoigiankiluat: item.thoigiankiluat
+            }
+        })
+        res.json(data)
     } catch (err) {
         next(err)
     }
