@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Bill = require('../models/Bill')
+const Room = require('../models/Room')
+const Student = require('../models/Student')
+
 router.get('/', async (req, res, next) => {
     const { keyword } = req.query
     try {
@@ -32,7 +35,27 @@ router.get('/', async (req, res, next) => {
             }
         }
         const bills = await Bill.find()
-        res.json(bills)
+        const sinhvien = await Student.find()
+        const room = await Room.find()
+        const data = bills.map(item => {
+            return {
+                id: item.id,
+                sinhvien: item.sinhvienid,
+                hoten: sinhvien.filter(item2 => item2.id === item.sinhvienid.toString())[0].hoten,
+                phongid: item.phongid,
+                sophong: room.filter(item2 => item2.id === item.phongid.toString())[0].sophong,
+                toanha: room.filter(item2 => item2.id === item.phongid.toString())[0].toanha,
+                tang: room.filter(item2 => item2.id === item.phongid.toString())[0].tang,
+                thang: item.thang,
+                nam: item.nam,
+                chisodiendau: item.chisodiendau,
+                chisodiencuoi: item.chisodiencuoi,
+                chisonuocdau: item.chisonuocdau,
+                chisonuoccuoi: item.chisonuoccuoi,
+                tinhtranghoadon: item.tinhtranghoadon
+            }
+        })
+        res.json(data)
     } catch (err) {
         next(err)
     }
