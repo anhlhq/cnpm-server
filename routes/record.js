@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/Record')
-
+const Student = require('../models/Student')
 router.get('/', async (req, res, next) => {
     const { keyword } = req.query
     try {
@@ -31,6 +31,8 @@ router.get('/', async (req, res, next) => {
 
         }
         const records = await Record.find()
+        // const sinhvien = await Student.findOne({})
+        // const data = records.map()
         res.json(records)
     } catch (err) {
         next(err)

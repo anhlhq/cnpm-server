@@ -6,6 +6,9 @@ const schema = new Schema({
         require: true,
         unique: true
     },
+    sophong: {
+        type: String
+    },
     toanha: {
         type: String,
         require: true

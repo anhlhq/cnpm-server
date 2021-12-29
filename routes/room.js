@@ -69,9 +69,10 @@ router.get('/:oid', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh } = req.body
+        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh, sophong } = req.body
         const room = await new Room
         room.id = id
+        room.sophong = sophong
         room.toanha = toanha
         room.tang = tang
         room.sogiuong = sogiuong
@@ -88,9 +89,10 @@ router.post('/', async (req, res, next) => {
 router.post('/update/:oid', async (req, res, next) => {
     try {
         const { oid } = req.params
-        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh } = req.body
+        const { id, toanha, tang, sogiuong, songuoitoida, giaphong, gioitinh, sophong } = req.body
         const room = await Room.findById(oid)
         room.id = id
+        room.sophong = sophong
         room.toanha = toanha
         room.tang = tang
         room.sogiuong = sogiuong
