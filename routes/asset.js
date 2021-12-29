@@ -42,8 +42,7 @@ router.get('/', async (req, res, next) => {
 
         const data = assets.map(item => {
             return {
-                id: item.id,
-                mataisai: item.mataisan,
+                mataisai: item.mataisai,
                 maphong: item.maphong,
                 sophong: room.filter(item2 => item2.id === item.maphong.toString())[0].sophong,
                 toanha: room.filter(item2 => item2.id === item.maphong.toString())[0].toanha,
