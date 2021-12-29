@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Asset = require('../models/Asset')
+const Room = require('../models/Room')
 
 router.get('/', async (req, res, next) => {
     const { keyword, maphong } = req.query
@@ -37,7 +38,22 @@ router.get('/', async (req, res, next) => {
             res.json(asset)
         }
         const assets = await Asset.find()
-        res.json(assets)
+        const room = await Room.find()
+
+        const data = assets.map(item => {
+            return {
+                id: item.id,
+                mataisai: item.mataisan,
+                maphong: item.maphong,
+                sophong: room.filter(item2 => item2.id === item.maphong.toString())[0].sophong,
+                toanha: room.filter(item2 => item2.id === item.maphong.toString())[0].toanha,
+                tang: room.filter(item2 => item2.id === item.maphong.toString())[0].tang,
+                tentaisan: item.tentaisan,
+                tinhtrang: item.tinhtrang,
+                donvitinh: item.donvitinh
+            }
+        })
+        res.json(data)
     } catch (err) {
         next(err)
     }
